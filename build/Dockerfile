@@ -24,7 +24,8 @@ RUN apt-get update \
     gpg \
     gpg-agent \
  && apt-get autoremove -y \
- && apt-get clean
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN chown debian-tor:debian-tor /etc/tor && chown debian-tor:debian-tor /var/log/tor
 
