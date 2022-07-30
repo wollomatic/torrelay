@@ -1,0 +1,18 @@
+services:
+
+  torrelay:
+    image: wollomacit/torrelay:latest
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    mem_limit: 4G # adjust
+    stop_grace_period: 2m
+    volumes:
+      - ./torrc:/etc/tor/torrc:ro
+      - data:/var/lib/tor
+    network_mode: host # check if you want this
+
+volumes:
+  data:
+    name: torrelay

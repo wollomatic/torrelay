@@ -1,0 +1,13 @@
+# Nickname changeme
+# ContactInfo changeme
+# MyFamily 
+ORPort 9001
+BandwidthRate 25 MBytes
+MaxAdvertisedBandwidth 10 MBytes
+MaxMemInQueues 3GB
+BridgeRelay 0
+ExitRelay 0
+HardwareAccel 1
+RunAsDaemon 0
+SocksPort 0
+Log notice stdout
