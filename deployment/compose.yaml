@@ -1,7 +1,7 @@
 services:
 
   torrelay:
-    image: wollomatic/torrelay:3138536b95f1c4ac90284d51a5a4746fae63944b
+    image: wollomatic/torrelay:8da842c96ce419b2d926ae0e6146ca0e1ec26946
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
