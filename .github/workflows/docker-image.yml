@@ -1,7 +1,12 @@
-name: Docker Image CI
+name: Build and Publish
 
 on:
   workflow_dispatch:
+  # run it on push to the default repository branch
+  # push:
+  #   branches: [main]
+  # # run it during pull request
+  # pull_request:
 
 jobs:
 
@@ -12,5 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file build/Dockerfile --tag wollomatic/torrelay:$(date +%s)
-      
+      # run: docker build . --file build/Dockerfile --tag wollomatic/torrelay:$(date +%s)
+      run: |
+        echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin docker.io
+        docker build . --file build/Dockerfile --tag docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:$GITHUB_SHA
+        docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:$GITHUB_SHA
