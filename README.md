@@ -10,6 +10,8 @@ Tor relay with docker / docker compose
 
 ## Getting Started
 
+**Get the sample configuration from the [Github Repo](https://github.com/wollomatic/torrelay/tree/main/deployment)**
+
 #### configure torrc
 
 * Copy torrc.EXAMPLE to torrc
