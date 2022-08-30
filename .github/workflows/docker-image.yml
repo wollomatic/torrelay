@@ -19,5 +19,6 @@ jobs:
     - name: Build the Docker image
       run: |
         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin docker.io
+        docker pull ubuntu:jammy
         docker build . --file build/Dockerfile --tag docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:0.4.7.10
         docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:0.4.7.10
