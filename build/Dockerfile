@@ -4,6 +4,7 @@ LABEL maintainer="Wollomatic <gh2022@wollomatic.de>"
 
 VOLUME ["/etc/tor", "/var/lib/tor"]
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
  && apt-get install -y \
     apt-transport-https \
