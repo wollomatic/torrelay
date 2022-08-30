@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 LABEL maintainer="Wollomatic <gh2022@wollomatic.de>"
 
@@ -15,7 +15,7 @@ RUN apt-get update \
     tini \
     --no-install-recommends \
  && wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | tee /usr/share/keyrings/tor-archive-keyring.gpg \
- && printf "deb [arch=amd64 signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org focal main\n" >> /etc/apt/sources.list.d/tor.list \
+ && printf "deb [arch=amd64 signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org jammy main\n" >> /etc/apt/sources.list.d/tor.list \
  && apt-get update \
  && apt-get install -y \
     tor \
