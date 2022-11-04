@@ -25,8 +25,8 @@ jobs:
     - name: Build the Docker image
       run: |
         docker pull ubuntu:jammy
-        docker build . --file build/Dockerfile --tag $IMAGE_NAME
+        docker build . --file build/Dockerfile --tag ${{ env.IMAGE_NAME }}
     - name: Push to Docker hub
       run: |
         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin docker.io
-        docker push $IMAGE_NAME
+        docker push ${{ env.IMAGE_NAME }}
