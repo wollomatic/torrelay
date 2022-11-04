@@ -26,6 +26,15 @@ jobs:
       run: |
         docker pull ubuntu:jammy
         docker build . --file build/Dockerfile --tag ${{ env.IMAGE_NAME }}
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: '${{ env.IMAGE_NAME }}'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
     - name: Push to Docker hub
       run: |
         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin docker.io
