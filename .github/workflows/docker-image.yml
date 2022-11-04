@@ -19,11 +19,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Set image name
+      run: |
+        export IMAGE_NAME=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:0.4.7.10
     - name: Build the Docker image
       run: |
         docker pull ubuntu:jammy
-        docker build . --file build/Dockerfile --tag docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:0.4.7.10
+        docker build . --file build/Dockerfile --tag $IMAGE_NAME
     - name: Push to Docker hub
       run: |
         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin docker.io
-        docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:0.4.7.10
+        docker push $IMAGE_NAME
