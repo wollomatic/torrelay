@@ -1,8 +1,14 @@
-FROM ubuntu:jammy
+FROM --platform=$BUILDPLATFORM ubuntu:jammy
 
 LABEL maintainer="Wollomatic <gh2022@wollomatic.de>"
-
+LABEL org.opencontainers.image.source=https://github.com/wollomatic/torrelay
+LABEL org.opencontainers.image.description="Tor relay in a ubuntu docker image"
+LABEL org.opencontainers.image.licenses=MIT
+LABEL securitytxt="https://wollomatic.de/.well-known/security.txt"
 VOLUME ["/etc/tor", "/var/lib/tor"]
+
+ENTRYPOINT [ "/usr/bin/tini", "--" ]
+CMD [ "/usr/sbin/tor", "-f", "/etc/tor/torrc" ]
 
 RUN apt-get update \
  && apt-get install -y \
@@ -22,6 +28,7 @@ RUN apt-get update \
     --no-install-recommends \
  && apt-get purge -y \
     wget \
+    curl \
     gpg \
     gpg-agent \
  && apt-get autoremove -y \
@@ -30,7 +37,3 @@ RUN apt-get update \
  && chown debian-tor:debian-tor /etc/tor
 
 USER debian-tor
-
-ENTRYPOINT [ "/usr/bin/tini", "--" ]
-
-CMD [ "/usr/sbin/tor", "-f", "/etc/tor/torrc" ]
