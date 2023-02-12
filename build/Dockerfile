@@ -11,6 +11,7 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 CMD [ "/usr/sbin/tor", "-f", "/etc/tor/torrc" ]
 
 RUN apt-get update \
+ && apt-get upgrade -y \
  && apt-get install -y \
     apt-transport-https \
     wget \
