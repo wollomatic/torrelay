@@ -1,9 +1,3 @@
-FROM golang:1.19-bullseye AS obfs4build
-RUN git clone -b obfs4proxy-0.0.14 --single-branch https://gitlab.com/yawning/obfs4.git
-WORKDIR /go/obfs4/
-RUN go get -u ./...
-RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o obfs4proxy/obfs4proxy ./obfs4proxy
-
 FROM ubuntu:jammy
 
 LABEL maintainer="Wollomatic <gh2022@wollomatic.de>"
@@ -15,8 +9,6 @@ VOLUME ["/etc/tor", "/var/lib/tor"]
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 CMD [ "/usr/sbin/tor", "-f", "/etc/tor/torrc" ]
-
-COPY --from=obfs4build /go/obfs4/obfs4proxy/obfs4proxy /usr/bin/
 
 RUN apt-get update \
  && apt-get upgrade -y \
