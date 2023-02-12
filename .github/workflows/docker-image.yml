@@ -46,4 +46,4 @@ jobs:
     - name: Build obfs4proxy for all platforms and push to Docker hub
       run: |
         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin docker.io
-        docker buildx build . --file obfs4proxy/Dockerfile --push --platform=linux/amd64,linux/arm64 --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}.${{ env.BUILD }}-obfs4proxy{{ env.OBFS4PROXY }} --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}-obfs4proxy
+        docker buildx build . --file obfs4proxy/Dockerfile --push --platform=linux/amd64,linux/arm64 --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}.${{ env.BUILD }}-obfs4proxy${{ env.OBFS4PROXY }} --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}-obfs4proxy
