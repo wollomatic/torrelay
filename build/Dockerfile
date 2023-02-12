@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM --platform=$BUILDPLATFORM ubuntu:jammy
 
 LABEL maintainer="Wollomatic <gh2022@wollomatic.de>"
 LABEL org.opencontainers.image.source=https://github.com/wollomatic/torrelay
