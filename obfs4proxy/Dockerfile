@@ -1,4 +1,4 @@
-FROM  --platform=$BUILDPLATFORM golang:1.19.9-bullseye AS obfs4build
+FROM  --platform=$BUILDPLATFORM golang:1.20-bookworm AS obfs4build
 RUN git clone -b obfs4proxy-0.0.14 --single-branch https://gitlab.com/yawning/obfs4.git
 WORKDIR /go/obfs4/
 ARG TARGETOS TARGETARCH
