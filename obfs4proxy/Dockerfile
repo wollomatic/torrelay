@@ -5,6 +5,6 @@ ARG TARGETOS
 ARG TARGETARCH
 RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o obfs4proxy/obfs4proxy ./obfs4proxy
 
-FROM wollomatic/torrelay:0.4.8.6
+FROM wollomatic/torrelay:0.4.8.7
 LABEL org.opencontainers.image.description="obfs4proxy in a ubuntu docker image"
 COPY --from=obfs4build /go/obfs4/obfs4proxy/obfs4proxy /usr/bin/
