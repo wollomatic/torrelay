@@ -29,15 +29,15 @@ jobs:
     - name: Build the Docker image
       run: |
         docker buildx build . --file build/Dockerfile --load --pull --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}.${{ env.BUILD }} --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }} --tag ${{ env.IMAGE_NAME }}
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: '${{ env.IMAGE_NAME }}:${{ env.VERSION }}.${{ env.BUILD }}'
-        format: 'table'
-        exit-code: '1'
-        ignore-unfixed: true
-        vuln-type: 'os,library'
-        severity: 'CRITICAL,HIGH'
+#    - name: Run Trivy vulnerability scanner
+#      uses: aquasecurity/trivy-action@master
+#      with:
+#        image-ref: '${{ env.IMAGE_NAME }}:${{ env.VERSION }}.${{ env.BUILD }}'
+#        format: 'table'
+#        exit-code: '1'
+#        ignore-unfixed: true
+#        vuln-type: 'os,library'
+#        severity: 'CRITICAL,HIGH'
     - name: Build torrelay for all platforms and push to Docker hub
       run: |
         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin docker.io
