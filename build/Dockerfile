@@ -26,8 +26,8 @@ RUN apt-get update \
  && printf "deb [arch=${TARGETARCH} signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org jammy main\n" >> /etc/apt/sources.list.d/tor.list \
  && apt-get update \
  && apt-get install -y \
-    tor=0.4.8.14-1+tpo1~jammy+1 \
-    tor-geoipdb=0.4.8.14-1+tpo1~jammy+1 \
+    tor=0.4.8.16-1+tpo1~jammy+1 \
+    tor-geoipdb=0.4.8.16-1+tpo1~jammy+1 \
     --no-install-recommends \
  && apt-get purge -y \
     wget \
