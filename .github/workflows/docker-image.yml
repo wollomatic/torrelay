@@ -23,7 +23,7 @@ jobs:
       run: |
         echo "IMAGE_NAME=docker.io/wollomatic/torrelay" >> $GITHUB_ENV
         echo "VERSION=0.4.8" >> $GITHUB_ENV
-        echo "BUILD=16" >> $GITHUB_ENV
+        echo "BUILD=18" >> $GITHUB_ENV
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Build the Docker image
