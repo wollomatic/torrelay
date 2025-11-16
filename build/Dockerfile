@@ -1,6 +1,7 @@
 FROM ubuntu:jammy
 
 LABEL maintainer="Wollomatic <gh2022@wollomatic.de>"
+LABEL maintainer="theking2 <theking2@king.ma>"
 LABEL org.opencontainers.image.source=https://github.com/wollomatic/torrelay
 LABEL org.opencontainers.image.description="Tor relay in a ubuntu docker image"
 LABEL org.opencontainers.image.licenses=MIT
@@ -26,8 +27,8 @@ RUN apt-get update \
  && printf "deb [arch=${TARGETARCH} signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org jammy main\n" >> /etc/apt/sources.list.d/tor.list \
  && apt-get update \
  && apt-get install -y \
-    tor=0.4.8.18-1~jammy+1 \
-    tor-geoipdb=0.4.8.18-1~jammy+1 \
+    tor=0.4.8.20-1~jammy+1 \
+    tor-geoipdb=0.4.8.20-1~jammy+1 \
     --no-install-recommends \
  && apt-get purge -y \
     wget \
