@@ -12,6 +12,11 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 CMD [ "/usr/sbin/tor", "-f", "/etc/tor/torrc" ]
 
 ARG TARGETARCH
+ARG TOR_VERSION=0.4.8.21
+ARG TOR_DEB_SUFFIX="-1~jammy+1"
+
+ENV TOR_VERSION=${TOR_VERSION} \
+    TOR_DEB_SUFFIX=${TOR_DEB_SUFFIX}
 
 RUN apt-get update \
  && apt-get upgrade -y \
@@ -27,8 +32,8 @@ RUN apt-get update \
  && printf "deb [arch=${TARGETARCH} signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org jammy main\n" >> /etc/apt/sources.list.d/tor.list \
  && apt-get update \
  && apt-get install -y \
-    tor=0.4.8.21-1~jammy+1 \
-    tor-geoipdb=0.4.8.21-1~jammy+1 \
+    tor=${TOR_VERSION}${TOR_DEB_SUFFIX} \
+    tor-geoipdb=${TOR_VERSION}${TOR_DEB_SUFFIX} \
     --no-install-recommends \
  && apt-get purge -y \
     wget \

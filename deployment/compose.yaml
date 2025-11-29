@@ -1,7 +1,9 @@
 services:
 
   torrelay:
-    image: wollomatic/torrelay:0.4.8.21
+    image: wollomatic/torrelay:${TOR_VERSION}
+    env_file:
+      - ../version.env
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
