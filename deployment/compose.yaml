@@ -1,7 +1,7 @@
 services:
 
   torrelay:
-    image: wollomatic/torrelay:0.4.8.21
+    image: wollomatic/torrelay:0.4.8.21 # make sure to use the most current version
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
