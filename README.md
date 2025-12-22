@@ -2,6 +2,12 @@
 
 Tor relay with docker / docker compose
 
+> [!IMPORTANT]
+>## wollomatic/torrelay is moving to Codeberg
+> The new location is https://codeberg.org/wollomatic/torrelay
+> 
+> The GitHub repo will be archived soon.
+
 ## Prerequisities
 
 * You need docker / docker compose installed on a linux machine with amd64 architecture.
